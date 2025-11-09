@@ -293,6 +293,27 @@ public static class ItemNames
 
     // TODO: rosary chests, rosary and shell deposits,
 
+    // Fast travel
+    public const string Bellway__Bone_Bottom = "Bellway__Bone_Bottom";
+    public const string Bellway__The_Marrow = "Bellway__The_Marrow";
+    public const string Bellway__Deep_Docks = "Bellway__Deep_Docks";
+    public const string Bellway__Far_Fields = "Bellway__Far_Fields";
+    public const string Bellway__Greymoor = "Bellway__Greymoor";
+    public const string Bellway__Bellhart = "Bellway__Bellhart";
+    public const string Bellway__Shellwood = "Bellway__Shellwood";
+    public const string Bellway__Blasted_Steps = "Bellway__Blasted_Steps";
+    public const string Bellway__The_Slab = "Bellway__The_Slab";
+    public const string Bellway__Grand_Bellway = "Bellway__Grand_Bellway";
+    public const string Bellway__Bilewater = "Bellway__Bilewater";
+    public const string Bellway__Putrified_Ducts = "Bellway__Putrified_Ducts";
+    public const string Ventrica__Terminus = "Ventrica__Terminus";
+    public const string Ventrica__Memorium = "Ventrica__Memorium";
+    public const string Ventrica__High_Halls = "Ventrica__High_Halls";
+    public const string Ventrica__First_Shrine = "Ventrica__First_Shrine";
+    public const string Ventrica__Choral_Chambers = "Ventrica__Choral_Chambers";
+    public const string Ventrica__Grand_Bellway = "Ventrica__Grand_Bellway";
+    public const string Ventrica__Underworks = "Ventrica__Underworks";
+    
     // Lore tablets
     public const string Lore_Tablet__Abyss_Top = "Lore_Tablet-Abyss_Top";
     public const string Lore_Tablet__Abyss_Bottom_Left = "Lore_Tablet-Abyss_Bottom_Left";
@@ -342,7 +363,7 @@ public static class ItemNames
 
     public const string Journal_Entry__Void_Tendrils = "Journal_Entry-Void_Tendrils";
     public const string Materium__Flintstone = "Materium-Flintstone";
-    public const string Materium__Roach Guts = "Materium-Roach Guts";
+    public const string Materium__Roach_Guts = "Materium-Roach_Guts";
     public const string Materium__Voltridian = "Materium-Voltridian";
     public const string Materium__Magnetite = "Materium-Magnetite";
 }
