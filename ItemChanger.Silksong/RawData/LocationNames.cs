@@ -262,5 +262,5 @@ public static class LocationNames
     // TODO: Styx/Skynx
 
     // Novelty/cursed locations
-    public const string Flea_Shop = "Flea_Shop";  // threshold shop; should consume the fleatopia tool pouch location
+    public const string Flea_Shop = "Flea_Shop";  // threshold shop; should consume the mooshka silk spool, fleatopia tool pouch, egg of flealia
 }

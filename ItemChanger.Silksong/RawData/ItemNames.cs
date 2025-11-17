@@ -320,8 +320,8 @@ public static class ItemNames
     public const string Lore_Tablet__Fleatopia_Weaver_Harp = "Lore_Tablet-Fleatopia_Weaver_Harp";
     public const string Lore_Tablet__Memorium_Entrance = "Lore_Tablet-Memorium_Entrance";
     public const string Lore_Tablet__Memorium_Orders = "Lore_Tablet-Memorium_Orders";
-    public const string Lore_Tablet__Bellhart_East = "Lore_Tablet-Bellhart_Entrance";  // Same text at 2 locations; could instead do East/West to match locations
-    // public const string Lore_Tablet__Bellhart_West = "Lore_Tablet-Bellhart_West";
+    public const string Lore_Tablet__Bellhart_East = "Lore_Tablet-Bellhart_East";
+    public const string Lore_Tablet__Bellhart_West = "Lore_Tablet-Bellhart_West";
     public const string Lore_Tablet__Marrow_Start = "Lore_Tablet-Marrow_Start";
     public const string Lore_Tablet__Marrow_Top = "Lore_Tablet-Marrow_Top";
     public const string Lore_Tablet__Pilgrims_Rest = "Lore_Tablet-Pilgrims_Rest";
