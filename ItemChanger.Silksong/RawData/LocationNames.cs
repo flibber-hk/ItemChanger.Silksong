@@ -65,7 +65,7 @@ public static class LocationNames
     public const string Curveclaw__Mottled_Skarr_Dead = "Curveclaw-Mottled_Skarr_Dead";
     public const string Curvesickle = "Curvesickle";
     public const string Delver_s_Drill = "Delver's_Drill";
-    public const string Flea_Brew = "Flew_Brew"; // TODO: refill location
+    public const string Flea_Brew = "Flea_Brew"; // TODO: refill location
     public const string Flintslate = "Flintslate";
     public const string Longpin = "Longpin";
     public const string Needle_Phial = "Needle_Phial"; // TODO: technically two locations
