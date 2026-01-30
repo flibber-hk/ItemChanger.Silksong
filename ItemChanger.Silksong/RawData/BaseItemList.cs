@@ -15,7 +15,6 @@ namespace ItemChanger.Silksong.RawData
             UIDef = new CollectableUIDef { CollectableName = "Ward Boss Key" },
         };
 
-        //testing quest items with mossberry stew
         public static Item Mossberry_Stew => new ItemChangerCollectableItem
         {
             Name = ItemNames.Mossberry_Stew,
@@ -23,14 +22,31 @@ namespace ItemChanger.Silksong.RawData
             UIDef = new CollectableUIDef { CollectableName = "Mossberry Stew" },
         };
 
-        //testing crest with wanderer crest
+        public static Item Crest_of_Hunter => new ItemChangerCollectableItem
+        {
+            Name = ItemNames.Crest_of_Hunter,
+            CollectableName = "Hunter",
+            UIDef = new CollectableUIDef { CollectableName = "Hunter" },
+        };
+        public static Item Crest_of_Hunter_v2 => new ItemChangerCollectableItem
+        {
+            Name = ItemNames.Crest_of_Hunter_v2,
+            CollectableName = "Hunter_v2",
+            UIDef = new CollectableUIDef { CollectableName = "Hunter_v2" },
+        };
+        public static Item Crest_of_Hunter_v3 => new ItemChangerCollectableItem
+        {
+            Name = ItemNames.Crest_of_Hunter_v3,
+            CollectableName = "Hunter_v3",
+            UIDef = new CollectableUIDef { CollectableName = "Hunter_v3" },
+        };
+
         public static Item Crest_of_Wanderer => new ItemChangerCollectableItem
         {
             Name = ItemNames.Crest_of_Wanderer,
             CollectableName = "Wanderer",
             UIDef = new CollectableUIDef { CollectableName = "Wanderer" },
         };
-        //testing usually unobtainable crest with cloakless
         public static Item Cloakless => new ItemChangerCollectableItem
         {
             Name = ItemNames.Cloakless,
@@ -38,7 +54,6 @@ namespace ItemChanger.Silksong.RawData
             UIDef = new CollectableUIDef { CollectableName = "Cloakless" },
         };
 
-        //testing skills with cross stitch
         public static Item Cross_Stitch => new ItemChangerCollectableItem
         {
             Name = ItemNames.Cross_Stitch,
@@ -46,7 +61,6 @@ namespace ItemChanger.Silksong.RawData
             UIDef = new CollectableUIDef { CollectableName = "Parry" },
         };
 
-        //testing red tools with tacks
         public static Item Tacks => new ItemChangerCollectableItem
         {
             Name = ItemNames.Tacks,
@@ -54,7 +68,6 @@ namespace ItemChanger.Silksong.RawData
             UIDef = new CollectableUIDef { CollectableName = "Tack" },
         };
 
-        //testing blue tools with multibinder
         public static Item Multibinder => new ItemChangerCollectableItem
         {
             Name = ItemNames.Multibinder,
@@ -62,7 +75,6 @@ namespace ItemChanger.Silksong.RawData
             UIDef = new CollectableUIDef { CollectableName = "Multibind" },
         };
 
-        //testing yellow tools with compass
         public static Item Compass => new ItemChangerCollectableItem
         {
             Name = ItemNames.Compass,
@@ -70,7 +82,13 @@ namespace ItemChanger.Silksong.RawData
             UIDef = new CollectableUIDef { CollectableName = "Compass" },
         };
 
-        //testing relics with arcane egg
+        public static Item Vaultkeeper_s_Melody => new ItemChangerCollectableItem
+        {
+            Name = ItemNames.Vaultkeeper_s_Melody,
+            CollectableName = "Librarian Melody Cylinder",
+            UIDef = new CollectableUIDef { CollectableName = "Librarian Melody Cylinder" },
+        };
+
         public static Item Arcane_Egg => new ItemChangerCollectableItem
         {
             Name = ItemNames.Arcane_Egg,

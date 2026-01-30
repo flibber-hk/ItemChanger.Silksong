@@ -43,6 +43,8 @@ public static class ItemNames
     public const string Crest_of_Architect = "Crest_of_Architect";
     public const string Crest_of_Beast = "Crest_of_Beast";
     public const string Crest_of_Hunter = "Crest_of_Hunter";
+    public const string Crest_of_Hunter_v2 = "Crest_of_Hunter_v2";
+    public const string Crest_of_Hunter_v3 = "Crest_of_Hunter_v3";
     public const string Crest_of_Reaper = "Crest_of_Reaper";
     public const string Crest_of_Shaman = "Crest_of_Shaman";
     public const string Crest_of_Wanderer = "Crest_of_Wanderer";

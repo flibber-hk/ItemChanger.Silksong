@@ -17,10 +17,14 @@ public enum Tests
     [Description("Tests giving Mossberry Stew from a coordinate shiny")]
     Mossberry_Stew_from_spawned_shiny,
 
+    [Description("Tests giving all Hunter Crest variants (base + upgrades) from a coordinate shiny")]
+    Crest_of_Hunter_variants_from_spawned_shinies,
+
     [Description("Tests giving Wanderer Crest from a coordinate shiny")]
     Crest_of_Wanderer_from_spawned_shiny,
     [Description("Tests giving Cloakless from a coordinate shiny")]
     Cloakless_from_spawned_shiny,
+
     [Description("Tests giving Cross Stitch from a coordinate shiny")]
     Cross_Stitch_from_spawned_shiny,
     [Description("Tests giving Tacks from a coordinate shiny")]
@@ -29,6 +33,9 @@ public enum Tests
     Multibinder_from_spawned_shiny,
     [Description("Tests giving Compass from a coordinate shiny")]
     Compass_from_spawned_shiny,
+
+    [Description("Tests giving Sacred Cylinder from a coordinate shiny")]
+    Vaultkeeper_s_Melody_from_spawned_shiny,
     [Description("Tests giving Arcane Egg from a coordinate shiny")]
     Arcane_Egg_from_spawned_shiny,
 
@@ -110,6 +117,46 @@ public static class TestDispatcher
                 }.Wrap().Add(finder.GetItem(ItemNames.Cloakless)!));
                 break;
 
+            case Tests.Crest_of_Hunter_variants_from_spawned_shinies:
+                StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Base Hunter Crest (middle)",
+                    SceneName = SceneNames.Tut_02,
+                    X = 133.6f,
+                    Y = 32.6f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Crest_of_Hunter)!));
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Hunter Crest v2 (left)",
+                    SceneName = SceneNames.Tut_02,
+                    X = 130.6f,
+                    Y = 32.6f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Crest_of_Hunter_v2)!));
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Hunter Crest v3 (right)",
+                    SceneName = SceneNames.Tut_02,
+                    X = 136.6f,
+                    Y = 32.6f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Crest_of_Hunter_v3)!));
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Wanderer Crest (far right)",
+                    SceneName = SceneNames.Tut_02,
+                    X = 143.6f,
+                    Y = 32.6f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Crest_of_Wanderer)!));
+                break;
+
             case Tests.Crest_of_Wanderer_from_spawned_shiny:
                 StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
                 prof.AddPlacement(new CoordinateLocation
@@ -186,6 +233,19 @@ public static class TestDispatcher
                     FlingType = ItemChanger.Enums.FlingType.Everywhere,
                     Managed = false,
                 }.Wrap().Add(finder.GetItem(ItemNames.Arcane_Egg)!));
+                break;
+
+            case Tests.Vaultkeeper_s_Melody_from_spawned_shiny:
+                StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Test",
+                    SceneName = SceneNames.Tut_02,
+                    X = 133.6f,
+                    Y = 32.6f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Vaultkeeper_s_Melody)!));
                 break;
 
             case Tests.Surgeon_s_Key_at_Whispering_Vaults:
