@@ -7,10 +7,10 @@ using ItemChanger.Placements;
 using ItemChanger.Silksong.Components;
 using ItemChanger.Silksong.Extensions;
 using ItemChanger.Silksong.FsmStateActions;
+using ItemChanger.Silksong.Modules;
 using ItemChanger.Silksong.Tags;
 using Silksong.AssetHelper.ManagedAssets;
 using Silksong.FsmUtil;
-using Silksong.FsmUtil.Actions;
 using UnityEngine;
 
 namespace ItemChanger.Silksong.Containers;
@@ -95,7 +95,7 @@ public class FleaContainer : Container
                 bundleName: "dataassets_assets_assets/dataassets/questsystem/proxies.bundle"
             );
 
-    public override uint SupportedCapabilities => ContainerCapabilities.None;  // TODO - blocked by IC.Core
+    public override uint SupportedCapabilities => ContainerCapabilities.None;  // TODO - fix this
 
     public override string Name => ContainerNames.Flea;
 
@@ -105,7 +105,12 @@ public class FleaContainer : Container
 
     public override GameObject GetNewContainer(ContainerInfo info)
     {
-        FleaContainerType fleaType = FleaContainerType.Sleeping;
+        // Select random container seeded by the placement name
+        // TODO - this should choose a container based on which prefabs satisfy the requested capabilities
+        int choice = ItemChangerHost.Singleton.ActiveProfile!
+            .Modules.GetOrAdd<ConsistentRandomnessModule>()
+            .Choose($"Flea Container // {info.GiveInfo.Placement.Name}", 0, _prefabs.Count - 1);
+        FleaContainerType fleaType = _prefabs.Keys.ElementAt(choice);
         FleaPrefabData data = _prefabs[fleaType];
 
         // This should be a no-op
@@ -119,6 +124,7 @@ public class FleaContainer : Container
         return spawnedFlea.WithLocalOffset(new(0, data.Offset, 0));
     }
 
+    // TODO - modifying non-replaceable fleas should have a cosmetic effect where possible
     public override void ModifyContainerInPlace(GameObject obj, ContainerInfo info)
     {
         if (info.GiveInfo.Placement is not IPrimaryLocationPlacement pmt)
@@ -181,7 +187,7 @@ public class FleaContainer : Container
                 AddGiveEffectToFsm(obj.FindChild("Flea Rescue").LocateMyFSM("Control"), info);
                 return;
             default:
-                throw new NotImplementedException();
+                throw new NotSupportedException();
         }
     }
 
@@ -196,6 +202,13 @@ public class FleaContainer : Container
 
     private void AddGiveEffectToFsm(PlayMakerFSM fsm, ContainerInfo info)
     {
+        // This only matters for Peak_05c
+        SetPlayerDataBool component = fsm.gameObject.GetComponent<SetPlayerDataBool>();
+        if (component != null)
+        {
+            UObject.Destroy(component);
+        }
+
         // All fleas give their effect via an FSM with a SavedItemGetV2 action
         // on the Rescue 1 state and the End state (so the flea is given twice).
         // This function is independent of the flea container type.

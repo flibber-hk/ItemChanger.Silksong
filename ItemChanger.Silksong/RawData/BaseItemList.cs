@@ -6,7 +6,7 @@ using ItemChanger.Silksong.UIDefs;
 
 namespace ItemChanger.Silksong.RawData
 {
-    internal static class BaseItemList
+    internal static partial class BaseItemList
     {
         public static Item Surgeon_s_Key => new ItemChangerCollectableItem
         {
@@ -18,7 +18,12 @@ namespace ItemChanger.Silksong.RawData
         public static Item Flea => new FleaItem
         {
             Name = ItemNames.Flea,
-            UIDef = new FleaUIDef(),
+            UIDef = new MsgUIDef()
+            {
+                Name = new BoxedString("Flea Yes"),
+                Sprite = new FleaSprite(),
+                ShopDesc = new BoxedString("Flea flea flea flea flea")
+            },
         };
 
         public static Dictionary<string, Item> GetBaseItems()

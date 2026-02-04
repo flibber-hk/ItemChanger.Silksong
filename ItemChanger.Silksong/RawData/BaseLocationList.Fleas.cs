@@ -30,7 +30,7 @@ internal static partial class BaseLocationList
             ItemChangerPlugin.Instance.Logger.LogWarning($"Location {name} needs its elevation checked!");
         }
 
-        return new ObjectLocation()
+        Location loc = new ObjectLocation()
         {
             Name = name,
             SceneName = sceneName,
@@ -38,11 +38,17 @@ internal static partial class BaseLocationList
             FlingType = flingType,
             Correction = new UnityEngine.Vector3(0, elevation ?? 0, 0),
             Tags = [
-                new OriginalContainerTag() { ContainerType = ContainerNames.Flea, Force = !replaceable },
                 new VanillaFleaTag(),
                 new OriginalFleaTypeTag() { FleaContainerType = fleaType }
             ]
         };
+
+        if (!replaceable)
+        {
+            loc.AddTag(new OriginalContainerTag() { ContainerType = ContainerNames.Flea, Force = true });
+        }
+
+        return loc;
     }
 
     public static Location Flea__dust_12 => CreateFleaLocation(
@@ -54,11 +60,11 @@ internal static partial class BaseLocationList
     );
 
     public static Location Flea__greymoor_06 => CreateFleaLocation(
-    LocationNames.Flea__greymoor_06,
-    SceneNames.Greymoor_06,
-    "Flea Rescue Sleeping",
-    FleaContainerType.Sleeping,
-    elevation: SLEEPING_ELEVATION
+        LocationNames.Flea__greymoor_06,
+        SceneNames.Greymoor_06,
+        "Flea Rescue Sleeping",
+        FleaContainerType.Sleeping,
+        elevation: SLEEPING_ELEVATION
     );
 
     public static Location Flea__song_11 => CreateFleaLocation(
@@ -91,8 +97,10 @@ internal static partial class BaseLocationList
         "Bell Wall Flea/Flea Rescue Generic",
         FleaContainerType.GenericWall,
         replaceable: false
-    ).WithTag(new DestroyOnContainerReplaceTag() { ObjectPath = "Bell Wall Flea/Bell Wall Tall (5)" });
+    ).WithTag(new DestroyOnContainerReplaceTag() { ObjectPath = "Bell Wall Flea/Bell Wall Tall (5)" })
+     .WithTag(new DeactivateIfPlacementCheckedTag() { ObjectName = "Bell Wall Flea/Bell Wall Tall (5)", SceneName = SceneNames.Belltown_04 });
 
+    // TODO - make sure this works (false location is replaced) post-IC.Core v0.5.0
     public static Location Flea__dock_16 => new DualLocation()
     {
         Name = LocationNames.Flea__dock_16,
@@ -156,6 +164,7 @@ internal static partial class BaseLocationList
         FleaContainerType.SlabCage,
         replaceable: false
         );
+    // TODO - add tag for audio
 
     public static Location Flea__dust_09 => CreateFleaLocation(
         LocationNames.Flea__dust_09,

@@ -21,6 +21,8 @@ public enum Tests
     Surgeon_s_Key_from_spawned_shiny,
     [Description("Tests putting a debug item at each flea location")]
     FleaLocations,
+    [Description("Tests putting a bunch of flea items in Tut_02")]
+    FleaItems,
     [Description("Tests modifying the Pale_Oil-Whispering_Vaults shiny in-place")]
     Surgeon_s_Key_at_Whispering_Vaults,
 }
@@ -54,6 +56,7 @@ public static class TestDispatcher
     {
         Init();
         ItemChangerProfile prof = ItemChangerHost.Singleton.ActiveProfile!;
+        prof.Modules.GetOrAdd<ConsistentRandomnessModule>().Seed = 12345;
         Finder finder = ItemChangerHost.Singleton.Finder;
         switch (ItemChangerTestingPlugin.Instance.cfgTest.Value)
         {
@@ -73,6 +76,27 @@ public static class TestDispatcher
                         .WithDebugItem()
                         );
                 }
+                break;
+
+            case Tests.FleaItems:
+                StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
+
+                int ct = 0;
+                for (float i = 140; i > 106; i -= 2)
+                {
+                    prof.AddPlacement(new CoordinateLocation
+                    {
+                        Name = $"FleaHolder {ct} @ {i}",
+                        SceneName = SceneNames.Tut_02,
+                        X = i,
+                        Y = 31.57f,
+                        FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                        Managed = false,
+                    }.Wrap().Add(finder.GetItem(ItemNames.Flea)!));
+
+                    ct++;
+                }
+
                 break;
 
             case Tests.Surgeon_s_Key_from_spawned_shiny:
@@ -99,7 +123,7 @@ public static class TestDispatcher
     private static Placement WithDebugItem(this Placement self)
         => self.Add(new DebugItem()
         {
-            Name = "Debug Item",
+            Name = $"Debug Item @ {self.Name}",
             UIDef = new MsgUIDef()
             {
                 Name = new BoxedString($"Checked {self.Name}"),
