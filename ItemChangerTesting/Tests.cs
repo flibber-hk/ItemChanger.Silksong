@@ -1,10 +1,15 @@
-﻿using ItemChanger;
-using ItemChanger.Silksong.Modules;
-using ItemChanger.Silksong.StartDefs;
-using Benchwarp.Data;
-using System.ComponentModel;
+﻿using Benchwarp.Data;
+using ItemChanger;
+using ItemChanger.Items;
 using ItemChanger.Locations;
+using ItemChanger.Placements;
+using ItemChanger.Serialization;
+using ItemChanger.Silksong.Modules;
 using ItemChanger.Silksong.RawData;
+using ItemChanger.Silksong.StartDefs;
+using ItemChanger.Silksong.UIDefs;
+using System.ComponentModel;
+using UnityEngine;
 
 namespace ItemChangerTesting;
 
@@ -14,8 +19,8 @@ public enum Tests
     StartInTut_02,
     [Description("Tests giving Surgeon's_Key from a coordinate shiny")]
     Surgeon_s_Key_from_spawned_shiny,
-    [Description("Tests giving Flea from a coordinate shiny")]
-    FleaFromSpawnedShiny,
+    [Description("Tests putting a debug item at each flea location")]
+    FleaLocations,
     [Description("Tests modifying the Pale_Oil-Whispering_Vaults shiny in-place")]
     Surgeon_s_Key_at_Whispering_Vaults,
 }
@@ -55,18 +60,21 @@ public static class TestDispatcher
             case Tests.StartInTut_02:
                 StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
                 break;
-            case Tests.FleaFromSpawnedShiny:
+
+            case Tests.FleaLocations:
                 StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
-                prof.AddPlacement(new CoordinateLocation
+
+                foreach (string loc in finder.LocationNames.Where(x => x.StartsWith("Flea-")))
                 {
-                    Name = "Test",
-                    SceneName = SceneNames.Tut_02,
-                    X = 133.6f,
-                    Y = 31.57f,
-                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
-                    Managed = false,
-                }.Wrap().Add(finder.GetItem("Anonymous Flea")!));
+                    prof.AddPlacement(
+                        finder
+                        .GetLocation(loc)!
+                        .Wrap()
+                        .WithDebugItem()
+                        );
+                }
                 break;
+
             case Tests.Surgeon_s_Key_from_spawned_shiny:
                 StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
                 prof.AddPlacement(new CoordinateLocation
@@ -87,4 +95,15 @@ public static class TestDispatcher
         }
         Run();
     }
+
+    private static Placement WithDebugItem(this Placement self)
+        => self.Add(new DebugItem()
+        {
+            Name = "Debug Item",
+            UIDef = new MsgUIDef()
+            {
+                Name = new BoxedString($"Checked {self.Name}"),
+                Sprite = new EmptySprite(),
+            }
+        });
 }
