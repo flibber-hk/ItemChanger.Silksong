@@ -40,15 +40,11 @@ internal static partial class BaseLocationList
             FlingType = flingType,
             Correction = new UnityEngine.Vector3(0, elevation ?? 0, 0),
             Tags = [
+                new OriginalContainerTag() { ContainerType = ContainerNames.Flea, Force = !replaceable, LowPriority = replaceable },
                 new VanillaFleaTag(),
                 new OriginalFleaTypeTag() { FleaContainerType = fleaType }
             ]
         };
-
-        if (!replaceable)
-        {
-            loc.AddTag(new OriginalContainerTag() { ContainerType = ContainerNames.Flea, Force = true });
-        }
 
         return loc;
     }
