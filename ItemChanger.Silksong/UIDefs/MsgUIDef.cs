@@ -10,15 +10,15 @@ namespace ItemChanger.Silksong.UIDefs
     /// </summary>
     public class MsgUIDef : UIDef
     {
-        public required IString Name { get; init; }
-        public IString? ShopDesc { get; init; }
-        public required ISprite Sprite { get; init; }
+        public required IValueProvider<string> Name { get; init; }
+        public IValueProvider<string>? ShopDesc { get; init; }
+        public required IValueProvider<Sprite> Sprite { get; init; }
 
         /// <summary>
         /// Optional string to use as the preview name. If not given, will use the default implementation,
         /// which matches <see cref="Name"/>.
         /// </summary>
-        public IString? PreviewName { get; init; } = null;
+        public IValueProvider<string>? PreviewName { get; init; } = null;
 
         public override string? GetLongDescription()
         {

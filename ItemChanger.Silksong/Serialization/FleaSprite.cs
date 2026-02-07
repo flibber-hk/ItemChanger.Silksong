@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ItemChanger.Silksong.Serialization;
 
 // TODO - this could be a SavedItemSprite wrapping an ISavedItem
-public class FleaSprite : ISprite
+public class FleaSprite : IValueProvider<Sprite>
 {
     [JsonIgnore] public Sprite Value
     {

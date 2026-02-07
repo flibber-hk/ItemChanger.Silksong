@@ -3,16 +3,11 @@ using Newtonsoft.Json;
 
 namespace ItemChanger.Silksong.Serialization;
 
-public class CountedString : IString
+public class CountedString : IValueProvider<string>
 {
-    public required IString Prefix { get; init; }
+    public required IValueProvider<string> Prefix { get; init; }
 
-    public required IInteger Amount { get; init; }
+    public required IValueProvider<int> Amount { get; init; }
 
     [JsonIgnore] public string Value => $"{Prefix.Value} ({Amount.Value})";
-
-    IString IString.Clone()  // TODO - wtf
-    {
-        return new CountedString() { Prefix = Prefix.Clone(), Amount = Amount };
-    }
 }

@@ -5,7 +5,7 @@ using Silksong.AssetHelper.ManagedAssets;
 
 namespace ItemChanger.Silksong.Serialization;
 
-public class FleaCount : IInteger
+public class FleaCount : IValueProvider<int>
 {
     [JsonIgnore] public int Value
     {
