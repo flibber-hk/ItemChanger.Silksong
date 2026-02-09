@@ -17,6 +17,8 @@
     <!--Allow access of private members at runtime.-->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ImplicitUsings>true</ImplicitUsings>
+    <!--Excludes IC.Testing from output when packing solution. Do not modify without also modifying Github Action.-->
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
