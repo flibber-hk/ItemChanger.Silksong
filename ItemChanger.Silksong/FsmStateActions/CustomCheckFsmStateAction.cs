@@ -1,5 +1,6 @@
 ﻿using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
+using Silksong.FsmUtil;
 
 namespace ItemChanger.Silksong.FsmStateActions;
 
@@ -22,13 +23,13 @@ public class CustomCheckFsmStateAction : FSMUtility.CheckFsmStateAction
     {
         trueEvent = orig.isTrue;
         falseEvent = orig.isFalse;
-        storeValue = new FsmBool("ITEMCHANGER DUMMY BOOL");
+        storeValue = orig.fsm.GetBoolVariable("ITEMCHANGER DUMMY BOOL");
     }
 
     public CustomCheckFsmStateAction(PlayerDataVariableTest orig)
     {
         trueEvent = orig.IsExpectedEvent;
         falseEvent = orig.IsNotExpectedEvent;
-        storeValue = new FsmBool("ITEMCHANGER DUMMY BOOL");
+        storeValue = orig.fsm.GetBoolVariable("ITEMCHANGER DUMMY BOOL");
     }
 }
