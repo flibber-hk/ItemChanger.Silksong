@@ -49,6 +49,7 @@ namespace ItemChanger.Silksong
             Type gmPatches = typeof(GameManagerPatches);
             Harmony harmony = new(gmPatches.FullName);
             harmony.PatchAll(gmPatches);
+            SilksongEvents.Hook();
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnActiveSceneChanged;
         }
 
@@ -58,6 +59,7 @@ namespace ItemChanger.Silksong
             this.gameInvoker = null;
 
             Harmony.UnpatchID(typeof(GameManagerPatches).FullName);
+            SilksongEvents.Unhook();
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= OnActiveSceneChanged;
             MessageUtil.Clear();
         }
