@@ -23,7 +23,7 @@ namespace ItemChanger.Silksong.Containers
             AddFeatherEffect = 1 << 0,
             AllowHazardFloat = 1 << 1,
 
-            Default = AllowHazardFloat,
+            Default = 0,
         }
 
         public static ShinyContainer Instance { get; } = new();
