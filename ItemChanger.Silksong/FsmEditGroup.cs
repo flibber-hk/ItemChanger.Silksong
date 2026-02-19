@@ -9,14 +9,14 @@ public class FsmEditGroup : IDisposable
     public void Add(FsmId id, Action<PlayMakerFSM> edit)
     {
         edits.Add((id, edit));
-        SilksongEvents.AddFsmEdit(id, edit);
+        SilksongHost.Instance.AddFsmEdit(id, edit);
     }
 
     public void Dispose()
     {
         foreach (var (id, edit) in edits)
         {
-            SilksongEvents.RemoveFsmEdit(id, edit);
+            SilksongHost.Instance.RemoveFsmEdit(id, edit);
         }
     }
 }
