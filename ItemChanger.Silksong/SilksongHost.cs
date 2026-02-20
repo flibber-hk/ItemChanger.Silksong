@@ -1,4 +1,5 @@
-﻿using GlobalEnums;
+﻿using Benchwarp.Data;
+using GlobalEnums;
 using HarmonyLib;
 using ItemChanger.Containers;
 using ItemChanger.Events;
@@ -45,21 +46,36 @@ namespace ItemChanger.Silksong
 
         public const string Wildcard = "*";
 
-        /// Registers a delegate to run whenever a FSM matching the given
-        /// (scene name, object name, FSM name) tuple is loaded.
-        /// The scene and object names can be Wildcard ("*") instead to match any scene or any
-        /// object, respectively.
+        /// <summary>
+        /// Registers a delegate to run whenever a FSM matching the given (scene name, object name, FSM name) tuple is loaded.
+        /// <br/>The scene and object names can be Wildcard ("*") instead to match any scene or any object, respectively.
+        /// <br/>Fsm edits can equivalently be managed by <see cref="FsmEditGroup"/>.
+        /// </summary>
         public void AddFsmEdit(FsmId id, Action<PlayMakerFSM> edit)
         {
             fsmEdits[id] = fsmEdits.GetValueOrDefault(id) + edit;
         }
 
+        /// <summary>
+        /// Unregisters a delegate added by <see cref="AddFsmEdit(FsmId, Action{PlayMakerFSM})"/>.
+        /// </summary>
         public void RemoveFsmEdit(FsmId id, Action<PlayMakerFSM> edit)
         {
-            fsmEdits[id] -= edit;
+            if (fsmEdits.TryGetValue(id, out Action<PlayMakerFSM>? result))
+            {
+                result -= edit;
+                if (result != null)
+                {
+                    fsmEdits[id] = result;
+                }
+                else
+                {
+                    fsmEdits.Remove(id);
+                }
+            }
         }
 
-        private Dictionary<FsmId, Action<PlayMakerFSM>?> fsmEdits = [];
+        private readonly Dictionary<FsmId, Action<PlayMakerFSM>?> fsmEdits = [];
 
         protected override void PrepareEvents(LifecycleEvents.Invoker lifecycleInvoker, GameEvents.Invoker gameInvoker)
         {
@@ -77,7 +93,7 @@ namespace ItemChanger.Silksong
             this.lifecycleInvoker = null;
             this.gameInvoker = null;
 
-            foreach (var id in fsmEdits.Keys)
+            foreach (FsmId id in fsmEdits.Keys)
             {
                 Logger.LogWarn($"FSM edit not cleaned up for {id.FsmName} in object {id.ObjectName} in scene {id.SceneName}");
             }
@@ -89,7 +105,7 @@ namespace ItemChanger.Silksong
 
         private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene from, UnityEngine.SceneManagement.Scene to)
         {
-            if (to.name == "Menu_Title")
+            if (to.name == SceneNames.Menu_Title)
             {
                 lifecycleInvoker?.NotifyOnLeaveGame();
                 return;
@@ -167,10 +183,10 @@ namespace ItemChanger.Silksong
             [HarmonyPrefix]
             private static void Prefix(PlayMakerFSM __instance)
             {
-                var fsm = __instance;
-                var sceneName = fsm.gameObject.scene.name;
-                var objectName = fsm.gameObject.name;
-                var fsmName = fsm.FsmName;
+                PlayMakerFSM fsm = __instance;
+                string sceneName = fsm.gameObject.scene.name;
+                string objectName = fsm.gameObject.name;
+                string fsmName = fsm.FsmName;
                 List<FsmId> matchingIds = [
                     new(sceneName, objectName, fsmName),
                     new(Wildcard, objectName, fsmName),
@@ -179,7 +195,7 @@ namespace ItemChanger.Silksong
                 ];
                 try
                 {
-                    foreach (var id in matchingIds)
+                    foreach (FsmId id in matchingIds)
                     {
                         Instance.fsmEdits.GetValueOrDefault(id)?.Invoke(fsm);
                     }
