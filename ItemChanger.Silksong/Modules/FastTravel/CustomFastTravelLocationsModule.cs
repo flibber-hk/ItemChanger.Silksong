@@ -6,7 +6,9 @@ using PrepatcherPlugin;
 namespace ItemChanger.Silksong.Modules.FastTravel;
 
 /// <summary>
-/// Module modifying the fast travel map buttons so that they can be unlocked by items.
+/// Module modifying the always-unlocked fast travel map buttons so that they can be unlocked by items.
+/// 
+/// Buttons which are already tied to PD bool values are not modified by this module.
 /// </summary>
 [SingletonModule]
 public sealed class CustomFastTravelLocationsModule<TLocation> : Module where TLocation : struct, IComparable
