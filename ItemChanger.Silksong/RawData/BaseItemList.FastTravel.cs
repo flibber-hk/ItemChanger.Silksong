@@ -68,20 +68,14 @@ internal static partial class BaseItemList
     {
         Name = ItemNames.Bellway__Bone_Bottom,
         BoolName = CustomFastTravelLocations.GetBoolStringForLocation(FastTravelLocations.Bonetown),
-        UIDef = GetBellwayUIDef("STATION_NAME_BONETOWN"),
-        Tags = [
-            new RequireModuleTag<CustomFastTravelLocationsModule<FastTravelLocations>>()
-            ]
+        UIDef = GetBellwayUIDef("STATION_NAME_BONETOWN")
     };
 
     public static Item Bellway__The_Marrow => new PDBoolItem()
     {
         Name = ItemNames.Bellway__The_Marrow,
         BoolName = CustomFastTravelLocations.GetBoolStringForLocation(FastTravelLocations.Bone),
-        UIDef = GetBellwayUIDef("STATION_NAME_BONE"),
-        Tags = [
-            new RequireModuleTag<CustomFastTravelLocationsModule<FastTravelLocations>>()
-            ]
+        UIDef = GetBellwayUIDef("STATION_NAME_BONE")
     };
 
     public static Item Bellway__Bilewater => new PDBoolItem()
@@ -97,10 +91,7 @@ internal static partial class BaseItemList
     {
         Name = ItemNames.Ventrica__Terminus,
         BoolName = CustomFastTravelLocations.GetBoolStringForLocation(TubeTravelLocations.Hub),
-        UIDef = GetVentricaUIDef("TUBE_NAME_HUB"),
-        Tags = [
-            new RequireModuleTag<CustomFastTravelLocationsModule<TubeTravelLocations>>()
-            ]
+        UIDef = GetVentricaUIDef("TUBE_NAME_HUB")
     };
 
     public static Item Ventrica__High_Halls => new PDBoolItem()
