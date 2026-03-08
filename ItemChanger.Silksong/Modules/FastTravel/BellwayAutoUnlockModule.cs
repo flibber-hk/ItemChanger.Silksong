@@ -33,6 +33,13 @@ public sealed class BellwayAutoUnlockModule : Module
         };
     }
 
+    protected override void DoUnload()
+    {
+        PlayerDataVariableEvents.OnGetBool -= SetBellwayUnlocked;
+        _fsmEdits?.Dispose();
+        _fsmEdits = null;
+    }
+
     private bool SetBellwayUnlocked(PlayerData pd, string fieldName, bool current)
     {
         return current || fieldName == nameof(PlayerData.UnlockedFastTravel);
@@ -60,12 +67,5 @@ public sealed class BellwayAutoUnlockModule : Module
             self.GetState("Centipede")!.ReplaceActionsOfType<PlayerDataVariableTest>(oldTest => new CustomCheckFsmStateAction(oldTest) { GetIsTrue = () => false });
             self.GetState("Appear Delay")!.ReplaceActionsOfType<PlayerDataVariableTest>(oldTest => new CustomCheckFsmStateAction(oldTest) { GetIsTrue = () => false });
         }
-    }
-
-    protected override void DoUnload()
-    {
-        PlayerDataVariableEvents.OnGetBool -= SetBellwayUnlocked;
-        _fsmEdits?.Dispose();
-        _fsmEdits = null;
     }
 }

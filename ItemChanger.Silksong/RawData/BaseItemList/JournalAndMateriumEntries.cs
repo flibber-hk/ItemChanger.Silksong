@@ -17,7 +17,7 @@ internal static partial class BaseItemList
         Item = new() { Id = id, Type = BaseGameSavedItem.ItemType.EnemyJournalRecord },
         UIDef = new MsgUIDef
         {
-            Name = FormatString.Create(new LanguageString("Mods.io.github.silksong.itemchanger", "FMT_JOURNAL_ENTRY_NAME"), uiName),
+            Name = CompositeString.Create(new LanguageString("Mods.io.github.silksong.itemchanger", "FMT_JOURNAL_ENTRY_NAME"), uiName),
             ShopDesc = uiDesc,
             Sprite = sprite,
         },
@@ -29,7 +29,7 @@ internal static partial class BaseItemList
         Item = new() { Id = id, Type = BaseGameSavedItem.ItemType.MateriumItem },
         UIDef = new MsgUIDef
         {
-            Name = FormatString.Create(new LanguageString("Mods.io.github.silksong.itemchanger", "FMT_MATERIUM_ENTRY_NAME"), uiName),
+            Name = CompositeString.Create(new LanguageString("Mods.io.github.silksong.itemchanger", "FMT_MATERIUM_ENTRY_NAME"), uiName),
             ShopDesc = uiDesc,
             Sprite = new SavedItemSprite { Item = new() { Id = id, Type = BaseGameSavedItem.ItemType.MateriumItem } },
         },

@@ -1,66 +1,12 @@
 ﻿using GlobalEnums;
 using HarmonyLib;
 using ItemChanger.Modules;
+using Mono.Cecil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using Silksong.UnityHelper.Extensions;  // Transitive reference from ModMenu
-using TeamCherry.SharedUtils;
-using UnityEngine;
-using Mono.Cecil;
 
 namespace ItemChanger.Silksong.Modules.FastTravel;
-
-public class LocationLocker<TLocation> : MonoBehaviour where TLocation : struct, IComparable
-{
-    private FastTravelMapButtonBase<TLocation> _buttonComponent;
-    private FastTravelMapBase<TLocation> _mapComponent;
-    private UISelectionListItem _uiListItemComponent;
-    private TMProOld.TextMeshPro _textComponent;
-
-    void Awake()
-    {
-        _buttonComponent = GetComponent<FastTravelMapButtonBase<TLocation>>();
-
-        if (_buttonComponent == null)
-        {
-            Destroy(this);
-            return;
-        }
-
-        _mapComponent = GetComponentInParent<FastTravelMapBase<TLocation>>();
-        _uiListItemComponent = GetComponent<UISelectionListItem>();
-        _textComponent = gameObject.FindChild("Text")!.GetComponent<TMProOld.TextMeshPro>();
-
-        _mapComponent.Opening += SetButtonLockedState;
-    }
-
-    private bool ShouldLockButton()
-    {
-        string pdBool = _buttonComponent.playerDataBool;
-
-        // The original code for IsUnlocked, regardless of the value of IsCurrentLocation
-        return !(string.IsNullOrEmpty(pdBool) || PlayerData.instance.GetVariable<bool>(pdBool));
-    }
-
-    private void SetButtonLockedState()
-    {
-        if (ShouldLockButton())
-        {
-            _textComponent.color = Color.gray;
-            _uiListItemComponent.InactiveConditionText = () => "LOCKED";  // This text is never displayed, but needs to be nonempty
-        }
-
-        else
-        {
-            _textComponent.color = Color.white;
-            _uiListItemComponent.InactiveConditionText = null;
-        }
-    }
-}
-
-// Singleton per TLocation, regardless of any other type parameters
-[SingletonModule]
-public abstract class FastTravelSourceModule<TLocation> : Module where TLocation : struct, IComparable { }
 
 /// <summary>
 /// Module modifying the fast travel map to allow for travel from locked source locations.
@@ -91,6 +37,16 @@ public sealed class FastTravelSourceModule<TLocation, TLockerComponent> : FastTr
             ));
     }
 
+    protected override void DoUnload()
+    {
+        foreach (IDisposable hook in _hooks)
+        {
+            hook.Dispose();
+        }
+
+        _hooks.Clear();
+    }
+
     private static void LockLockedLocationButton(
         Action<FastTravelMapButtonBase<TLocation>> orig, FastTravelMapButtonBase<TLocation> self)
     {
@@ -119,18 +75,11 @@ public sealed class FastTravelSourceModule<TLocation, TLockerComponent> : FastTr
     {
         return orig(self) || self.IsCurrentLocation();
     }
-
-    protected override void DoUnload()
-    {
-        foreach (IDisposable hook in _hooks)
-        {
-            hook.Dispose();
-        }
-
-        _hooks.Clear();
-    }
-
 }
+
+// Singleton per TLocation, regardless of any other type parameters
+[SingletonModule]
+public abstract class FastTravelSourceModule<TLocation> : Module where TLocation : struct, IComparable { }
 
 public static class FastTravelSourceModule
 {

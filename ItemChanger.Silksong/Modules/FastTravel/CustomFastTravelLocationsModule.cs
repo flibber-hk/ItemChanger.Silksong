@@ -37,6 +37,14 @@ public sealed class CustomFastTravelLocationsModule<TLocation> : Module where TL
             );
     }
 
+    protected override void DoUnload()
+    {
+        PlayerDataVariableEvents.OnGetBool -= CatchCustomBoolGet;
+        PlayerDataVariableEvents.OnGetBool -= CatchCustomBoolSet;
+        _hook?.Dispose();
+        _hook = null;
+    }
+
     private static void SetPlayerDataBoolString(Action<FastTravelMapButtonBase<TLocation>> orig, FastTravelMapButtonBase<TLocation> self)
     {
         if (string.IsNullOrEmpty(self.playerDataBool))
@@ -68,15 +76,6 @@ public sealed class CustomFastTravelLocationsModule<TLocation> : Module where TL
         }
 
         return current;
-    }
-
-
-    protected override void DoUnload()
-    {
-        PlayerDataVariableEvents.OnGetBool -= CatchCustomBoolGet;
-        PlayerDataVariableEvents.OnGetBool -= CatchCustomBoolSet;
-        _hook?.Dispose();
-        _hook = null;
     }
 }
 
