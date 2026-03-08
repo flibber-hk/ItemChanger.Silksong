@@ -1,5 +1,6 @@
 ﻿using GlobalEnums;
 using ItemChanger.Items;
+using ItemChanger.Serialization;
 using ItemChanger.Silksong.Items;
 using ItemChanger.Silksong.Modules.FastTravel;
 using ItemChanger.Silksong.Serialization;
@@ -17,8 +18,11 @@ internal static partial class BaseItemList
         {
             Name = CompositeString.Create(
                 LanguageString.FromItemChanger("FMT_FAST_TRAVEL_PATTERN"),
-                ("TRAVEL_TYPE", BaseLanguageStrings.Bellway),
-                ("STATION_NAME", station)),
+                new Dictionary<string, IValueProvider<object>>
+                {
+                    { "TRAVEL_TYPE", BaseLanguageStrings.Bellway },
+                    { "STATION_NAME", station }
+                }),
             ShopDesc = null!,
             Sprite = BaseAtlasSprites.Bellway, 
         };
@@ -30,8 +34,11 @@ internal static partial class BaseItemList
         {
             Name = CompositeString.Create(
                 LanguageString.FromItemChanger("FMT_FAST_TRAVEL_PATTERN"),
-                ("TRAVEL_TYPE", BaseLanguageStrings.Ventrica),
-                ("STATION_TYPE", station)),
+                new Dictionary<string, IValueProvider<object>>
+                {
+                    { "TRAVEL_TYPE", BaseLanguageStrings.Ventrica },
+                    { "STATION_TYPE", station } 
+                }),
             ShopDesc = null!,
             Sprite = BaseAtlasSprites.Ventrica,
         };
