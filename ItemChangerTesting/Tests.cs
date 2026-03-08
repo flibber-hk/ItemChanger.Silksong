@@ -88,6 +88,8 @@ public enum Tests
     MaskShardItemTest,
     [Description("Tests various spool fragment items.")]
     SpoolFragmentItemTest,
+    [Description("Tests various journal entry and materium entry items.")]
+    EntryItemTest,
 }
 
 public static class TestDispatcher
@@ -661,6 +663,41 @@ public static class TestDispatcher
                     FlingType = ItemChanger.Enums.FlingType.Everywhere,
                     Managed = false,
                 }.Wrap().Add(finder.GetItem(ItemNames.Double_Mask_Shard)!));
+                break;
+
+            case Tests.EntryItemTest:
+                StartNear(SceneNames.Tut_02, PrimitiveGateNames.right1);
+                prof.AddPlacement(finder.GetLocation(LocationNames.Start)!.Wrap()
+                    .Add(finder.GetItem(ItemNames.Materium)!)
+                    .Add(finder.GetItem(ItemNames.Hunter_s_Journal)!));
+
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Middle",
+                    SceneName = SceneNames.Tut_02,
+                    X = 133.6f,
+                    Y = 31.57f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Materium_Entry__Mossberry)!));
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Left",
+                    SceneName = SceneNames.Tut_02,
+                    X = 130.6f,
+                    Y = 31.57f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Materium_Entry__Silk)!));
+                prof.AddPlacement(new CoordinateLocation
+                {
+                    Name = "Right",
+                    SceneName = SceneNames.Tut_02,
+                    X = 136.6f,
+                    Y = 31.57f,
+                    FlingType = ItemChanger.Enums.FlingType.Everywhere,
+                    Managed = false,
+                }.Wrap().Add(finder.GetItem(ItemNames.Journal_Entry__Void_Tendrils)!));
                 break;
 
         }

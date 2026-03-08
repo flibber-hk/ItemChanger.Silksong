@@ -1,3 +1,5 @@
 {
-  "FMT_PAY_ROSARIES": "{0} Rosaries"
+  "FMT_PAY_ROSARIES": "{0} Rosaries",
+  "FMT_MATERIUM_ENTRY_NAME": "{0} Entry",
+  "FMT_JOURNAL_ENTRY_NAME": "{0} Entry"
 }
