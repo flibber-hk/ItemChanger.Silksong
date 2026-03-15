@@ -68,6 +68,17 @@ internal class FlippedSpriteTest : Test
             ForceDefaultContainer = true,  // Multi shiny because chests aren't implemented
         }.Wrap();
 
+        Placement upsideDown = new CoordinateLocation
+        {
+            Name = "Upside Down",
+            SceneName = SceneNames.Tut_02,
+            X = 117.6f,
+            Y = 31.57f,
+            FlingType = ItemChanger.Enums.FlingType.Everywhere,
+            Managed = false,
+            ForceDefaultContainer = true,  // Multi shiny because chests aren't implemented
+        }.Wrap();
+
 
         AddItem("Dash", BaseAtlasSprites.Swift_Step);
         AddItem("Cloak", BaseAtlasSprites.Faydown_Cloak);
@@ -80,6 +91,7 @@ internal class FlippedSpriteTest : Test
         Profile.AddPlacement(flipped);
         Profile.AddPlacement(doubleFlipped);
         Profile.AddPlacement(projected);
+        Profile.AddPlacement(upsideDown);
 
         Profile.AddPlacement(new CoordinateLocation
         {
@@ -109,6 +121,7 @@ internal class FlippedSpriteTest : Test
         void AddItem(string name, IValueProvider<Sprite> sprite)
         {
             IValueProvider<Sprite> flippedSprite = sprite.FlipX($"Flipped {name}");
+            IValueProvider<Sprite> upsideDownSprite = sprite.FlipY($"UpsideDown {name}");
             IValueProvider<Sprite> doubleFlippedSprite = flippedSprite.FlipX($"Flipped/Flipped {name}");
 
             unflipped.Add(new DebugItem()
@@ -148,6 +161,16 @@ internal class FlippedSpriteTest : Test
                 {
                     Name = new BoxedString("P " + name),
                     Sprite = sprite.Project($"Projected: {name}")
+                }
+            });
+
+            upsideDown.Add(new DebugItem()
+            {
+                Name = $"Debug Item: {name}",
+                UIDef = new MsgUIDef()
+                {
+                    Name = new BoxedString("U " + name),
+                    Sprite = upsideDownSprite,
                 }
             });
         }
