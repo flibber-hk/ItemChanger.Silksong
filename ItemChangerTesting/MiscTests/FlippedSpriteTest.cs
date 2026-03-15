@@ -115,6 +115,11 @@ internal class FlippedSpriteTest : Test
         .WithDebugItem(
             BaseAtlasSprites.Swift_Step.Project("Dash Project"),
             "Project"
+            )
+        // Make sure this is different to SingleFlip
+        .WithDebugItem(
+            BaseAtlasSprites.Swift_Step.FlipY(),
+            "UpsideDown"
             ));
 
 
