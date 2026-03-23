@@ -248,13 +248,6 @@ namespace ItemChanger.Silksong
                     }
                 }
             }
-
-            [HarmonyPatch(typeof(GameManager), nameof(GameManager.ReturnToMainMenu))]
-            [HarmonyPriority(-100)]  // This has to come before DataManager causes IC to unhook
-            private static void Prefix()
-            {
-                Host.lifecycleInvoker?.NotifyOnLeaveGame();
-            }
         }
     }
 

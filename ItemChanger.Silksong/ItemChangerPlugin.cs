@@ -1,7 +1,6 @@
 using BepInEx;
 using ItemChanger.Silksong.Containers;
 using ItemChanger.Silksong.Serialization;
-using Silksong.DataManager;
 using ItemChanger.Silksong.Assets;
 
 namespace ItemChanger.Silksong
