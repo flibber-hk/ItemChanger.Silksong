@@ -1,4 +1,5 @@
-﻿using ItemChanger.Silksong.RawData;
+﻿using ItemChanger.Silksong.Assets;
+using ItemChanger.Silksong.RawData;
 using ItemChanger.Silksong.Util;
 using UnityEngine;
 
@@ -39,13 +40,13 @@ public class FramedSprite : ModifiedSprite
 
         Sprite frame = frameStyle switch
         {
-            FrameStyle.Normal => ICObjectCache.JournalBorderNormal,  // 97x108
+            FrameStyle.Normal => SpriteKeys.JOURNAL_BORDER_NORMAL.GetAsset<Sprite>(),  // 97x108
             FrameStyle.Completed => BaseAtlasSprites.JournalBorderCompleted.Value,  // 122x130
             _ => throw new InvalidOperationException(),
         };
         
         // 34x34
-        Sprite background = ICObjectCache.JournalBackground;
+        Sprite background = SpriteKeys.JOURNAL_BACKGROUND.GetAsset<Sprite>();
 
         Sprite mainSprite = BaseSprite.Value;
 
