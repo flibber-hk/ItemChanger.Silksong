@@ -51,9 +51,24 @@ internal class MultiItemChestTest : Test
 
         Profile.AddPlacement(new CoordinateLocation
         {
-            Name = "Ant Chest",
+            Name = "Mossy Bone Chest",
             SceneName = SceneNames.Tut_02,
             X = 125.6f,
+            Y = 31.57f,
+            FlingType = ItemChanger.Enums.FlingType.Everywhere,
+            Managed = false,
+            ForceDefaultContainer = false,
+        }.Wrap()
+        .WithTag(new ChestControlTag { ChestInfo = new() { ChestType = ChestType.MossyBone } })
+         .Add(Finder.GetItem(ItemNames.Surgeon_s_Key)!)
+         .Add(Finder.GetItem(ItemNames.Everbloom)!)
+         .Add(Finder.GetItem(ItemNames.Pale_Oil)!));
+
+        Profile.AddPlacement(new CoordinateLocation
+        {
+            Name = "Ant Chest",
+            SceneName = SceneNames.Tut_02,
+            X = 121.6f,
             Y = 31.57f,
             FlingType = ItemChanger.Enums.FlingType.Everywhere,
             Managed = false,
@@ -68,7 +83,7 @@ internal class MultiItemChestTest : Test
         {
             Name = "Docks Chest",
             SceneName = SceneNames.Tut_02,
-            X = 121.6f,
+            X = 117.6f,
             Y = 31.57f,
             FlingType = ItemChanger.Enums.FlingType.Everywhere,
             Managed = false,
@@ -83,7 +98,7 @@ internal class MultiItemChestTest : Test
         {
             Name = "Pilgrim Chest",
             SceneName = SceneNames.Tut_02,
-            X = 117.6f,
+            X = 113.6f,
             Y = 31.57f,
             FlingType = ItemChanger.Enums.FlingType.Everywhere,
             Managed = false,

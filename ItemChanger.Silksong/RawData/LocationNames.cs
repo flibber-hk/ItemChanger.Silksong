@@ -223,6 +223,9 @@ public static class LocationNames
     public const string Growstone = "Growstone";
     public const string Hornet_Statuette = "Hornet_Statuette";
 
+    // Shell Shard Chests
+    public const string Shell_Shard_Chest__Deep_Docks = "Shell_Shard_Chest-Deep_Docks";
+
     // Shell Shard Fossils (breakable rocks that drop shards)
     public const string Shell_Shard_Fossil__Tut_01 = "Shell_Shard_Fossil-Tut_01";
     public const string Shell_Shard_Fossil__Tut_01b_1 = "Shell_Shard_Fossil-Tut_01b_1";
@@ -396,15 +399,16 @@ public static class LocationNames
     public const string Rosary_Rock__Shellwood_26 = "Rosary_Rock-Shellwood_26";
 
     // Rosary Chests
-    public const string Rosary_Chest__Bone_19 = "Rosary_Chest-Bone_19";
-    public const string Rosary_Chest__Bone_East_17 = "Rosary_Chest-Bone_East_17";
-    public const string Rosary_Chest__Dust_05 = "Rosary_Chest-Dust_05";
-    public const string Rosary_Chest__Hang_06_Bank = "Rosary_Chest-Hang_06_Bank";
-    public const string Rosary_Chest__Hang_08 = "Rosary_Chest-Hang_08";
-    public const string Rosary_Chest__Slab_19b = "Rosary_Chest-Slab_19b";
-    public const string Rosary_Chest__Song_03 = "Rosary_Chest-Song_03";
-    public const string Rosary_Chest__Song_17 = "Rosary_Chest-Song_17";
-    public const string Rosary_Chest__Tut_01 = "Rosary_Chest-Tut_01";
+    public const string Rosary_Chest__Choral_Chambers_Northwest = "Rosary_Chest-Choral_Chambers_Northwest";
+    public const string Rosary_Chest__Choral_Chambers_Southwest = "Rosary_Chest-Choral_Chambers_Southwest";
+    public const string Rosary_Chest__Far_Fields = "Rosary_Chest-Far_Fields";
+    public const string Rosary_Chest__High_Halls_Spire = "Rosary_Chest-High_Halls_Spire";
+    public const string Rosary_Chest__High_Halls_Vault_1 = "Rosary_Chest-High_Halls_Vault_1";
+    public const string Rosary_Chest__High_Halls_Vault_2 = "Rosary_Chest-High_Halls_Vault_2";
+    public const string Rosary_Chest__Moss_Grotto = "Rosary_Chest-Moss_Grotto";
+    public const string Rosary_Chest__Sinner_s_Road = "Rosary_Chest-Sinner's_Road";
+    public const string Rosary_Chest__The_Marrow = "Rosary_Chest-The_Marrow";
+    public const string Rosary_Chest__The_Slab = "Rosary_Chest-The_Slab";
 
     // Rosary Caches (Hidden/Large Stashes)
     public const string Rosary_Cache__Bellhart_04_Top = "Rosary_Cache-Bellhart_04_Top";
@@ -468,7 +472,7 @@ public static class LocationNames
 
     // Pale rosary necklaces
     public const string Pale_Rosary_Necklace__Far_Fields = "Pale_Rosary_Necklace-Far_Fields"; // Northeastern Far Fields, guarded by Skarr Stalker
-    public const string Pale_Rosary_Necklace__High_Halls = "Pale_Rosary_Necklace-High_Halls"; // Rosary Bank chest west of Ventrica station
+    public const string Pale_Rosary_Necklace__High_Halls_Vault = "Pale_Rosary_Necklace-High_Halls_Vault"; // Rosary Bank chest west of Ventrica station
 
     // ROSARY POUCHES (Destructible Sacks)
     public const string Rosary_Pouch__Coral_12 = "Rosary_Pouch-Coral_12";

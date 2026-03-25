@@ -20,6 +20,10 @@
     "ObjPath": "Thief Scene Control/Thieves Not Here/Chest"
   },
   "CHEST_BONE": {
+    "SceneName": "Bone_19",
+    "ObjPath": "Bone Chest"
+  },
+  "CHEST_MOSSY_BONE": {
     "SceneName": "Tut_01",
     "ObjPath": "Bone Chest"
   },

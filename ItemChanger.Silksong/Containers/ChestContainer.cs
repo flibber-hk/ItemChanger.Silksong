@@ -4,6 +4,7 @@ using ItemChanger.Containers;
 using ItemChanger.Enums;
 using ItemChanger.Items;
 using ItemChanger.Silksong.Assets;
+using ItemChanger.Silksong.Components;
 using ItemChanger.Silksong.Extensions;
 using ItemChanger.Silksong.Tags;
 using Silksong.FsmUtil;
@@ -21,9 +22,13 @@ public class ChestContainer : Container
         /// </summary>
         Citadel,
         /// <summary>
-        /// Chest used in Moss Grotto.
+        /// Chest used in The Marrow.
         /// </summary>
         Bone,
+        /// <summary>
+        /// Chest used in Moss Grotto.
+        /// </summary>
+        MossyBone,
         /// <summary>
         /// Chest used in Far Fields.
         /// </summary>
@@ -42,6 +47,7 @@ public class ChestContainer : Container
     {
         [ChestType.Citadel] = GameObjectKeys.CHEST_CITADEL,
         [ChestType.Bone] = GameObjectKeys.CHEST_BONE,
+        [ChestType.MossyBone] = GameObjectKeys.CHEST_MOSSY_BONE,
         [ChestType.Ant] = GameObjectKeys.CHEST_ANT,
         [ChestType.Docks] = GameObjectKeys.CHEST_DOCKS,
         [ChestType.Pilgrim] = GameObjectKeys.CHEST_PILGRIM,
@@ -98,7 +104,16 @@ public class ChestContainer : Container
     {
         RemoveExistingItems(chest);
         RemovePersistentData(chest);
-        AddGiveEffectToChestControlFsm(chest.LocateMyFSM("Chest Control"), info);
+        if (chest.activeInHierarchy)
+        {
+            AddGiveEffectToChestControlFsm(chest.LocateMyFSM("Chest Control"), info);
+        }
+        else
+        {
+            EditFsmOnEnable edit = chest.AddComponent<EditFsmOnEnable>();
+            edit.FsmName = "Chest Control";
+            edit.Edit = (fsm) => AddGiveEffectToChestControlFsm(fsm, info);
+        }
     }
 
     protected override void DoLoad()
