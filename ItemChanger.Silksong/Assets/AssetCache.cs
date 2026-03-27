@@ -65,6 +65,12 @@ public static class AssetCache
         return scene.Instantiate(GetObjectCache<GameObject>().GetAsset(key));
     }
 
+    /// <summary>
+    /// Retrieves a GameObject asset by key, and instantiates it in the current active scene.
+    /// </summary>
+    public static GameObject InstantiateInCurrentScene(this string key)
+        => InstantiateAsset(key, UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+
 
     private static void LoadAll()
     {
